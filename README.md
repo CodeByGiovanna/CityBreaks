@@ -47,7 +47,7 @@ Pré-requisitos: .NET 10 SDK e a ferramenta `dotnet-ef`.
 
 ```bash
 dotnet tool install --global dotnet-ef --version "10.0.*"
-cd CityBreaks.Web
+cd CityBreaks
 dotnet ef database update
 dotnet run
 ```
