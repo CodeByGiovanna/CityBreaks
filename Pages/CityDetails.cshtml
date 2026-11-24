@@ -1,0 +1,40 @@
+@page "{name}"
+@model CityDetailsModel
+@{
+    ViewData["Title"] = Model.City.Name;
+}
+
+<h1>@Model.City.Name</h1>
+<p class="lead">@Model.City.Country.CountryName (@Model.City.Country.CountryCode)</p>
+
+<h2 class="h4">Propriedades</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Preço por noite</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var property in Model.City.Properties)
+        {
+            <tr>
+                <td>@property.Name</td>
+                <td>€ @property.PricePerNight.ToString("N2")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-primary" asp-page="/EditProperty" asp-route-id="@property.Id">Editar</a>
+                    <form method="post" class="d-inline"
+                          asp-page-handler="Delete"
+                          asp-route-name="@Model.City.Name"
+                          asp-route-id="@property.Id">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="/Index">Voltar para a lista de cidades</a>
